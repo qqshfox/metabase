@@ -1,5 +1,6 @@
 (ns metabase.public-settings
-  (:require [clojure.string :as str]
+  (:require [clj-time.core :as ct]
+            [clojure.string :as str]
             [clojure.tools.logging :as log]
             [java-time :as t]
             [metabase
@@ -8,7 +9,6 @@
              [util :as u]]
             [metabase.driver.util :as driver.u]
             [metabase.models
-             [common :as common]
              [setting :as setting :refer [defsetting]]]
             metabase.public-settings.metastore
             [metabase.util
@@ -232,7 +232,7 @@
   "Available report timezone options"
   :visibility :public
   :setter     :none
-  :getter     (constantly common/timezones))
+  :getter     ct/available-ids)
 
 (defsetting engines
   "Available database engines"
